@@ -7,7 +7,7 @@ data "local_file" "example" {
   filename = "example.txt"
 }
 
-output "data-source-resout" {
+output "data-source-result" {
   value = data.local_file.example.content
 }
 
