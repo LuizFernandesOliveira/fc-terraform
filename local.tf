@@ -5,5 +5,8 @@ resource "local_file" "example" {
 
 variable "content" {
   type = string
-  default = "Hello, World!"
+}
+
+output "id-file" {
+  value = resource.local_file.example.id
 }
