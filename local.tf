@@ -3,6 +3,14 @@ resource "local_file" "example" {
   content  = var.content
 }
 
+data "local_file" "example" {
+  filename = "example.txt"
+}
+
+output "data-source-resout" {
+  value = data.local_file.example.content
+}
+
 variable "content" {
   type = string
 }
