@@ -1,4 +1,9 @@
 resource "local_file" "example" {
   filename = "example.txt"
-  content  = "Hello, World! Nandoo!"
+  content  = var.content
+}
+
+variable "content" {
+  type = string
+  default = "Hello, World!"
 }
