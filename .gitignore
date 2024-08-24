@@ -1,5 +1,5 @@
 .idea
-.terraform
+.dev/.terraform
 *.tfstate
 *.tfstate.*
-example.txt
+.dev/example.txt
