@@ -1,6 +1,6 @@
 .idea
 .dev/.terraform
 .aws/.terraform
-*.tfstate
-*.tfstate.*
 .dev/example.txt
+module/.terraform
+.aws/kubeconfig
