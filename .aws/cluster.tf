@@ -1,10 +1,10 @@
 resource "aws_security_group" "fullcycle-sg" {
   vpc_id = aws_vpc.fullcycle-vpc.id
   egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
     prefix_list_ids = []
   }
   tags = {
@@ -13,7 +13,7 @@ resource "aws_security_group" "fullcycle-sg" {
 }
 
 resource "aws_iam_role" "fullcycle-cluster-role" {
-  name = "${var.prefix}-${var.cluster_name}-role"
+  name               = "${var.prefix}-${var.cluster_name}-role"
   assume_role_policy = <<POLICY
     {
       "Version": "2012-10-17",
@@ -41,16 +41,16 @@ resource "aws_iam_role_policy_attachment" "fullcycle-cluster-AmazonEKSClusterPol
 }
 
 resource "aws_cloudwatch_log_group" "fullcycle-cluster-log" {
-  name = "/aws/eks/${var.prefix}-${var.cluster_name}/cluster"
+  name              = "/aws/eks/${var.prefix}-${var.cluster_name}/cluster"
   retention_in_days = var.log_retention_days
 }
 
 resource "aws_eks_cluster" "fullcycle-cluster" {
-  name     = "${var.prefix}-${var.cluster_name}"
-  role_arn = aws_iam_role.fullcycle-cluster-role.arn
+  name                      = "${var.prefix}-${var.cluster_name}"
+  role_arn                  = aws_iam_role.fullcycle-cluster-role.arn
   enabled_cluster_log_types = ["api", "audit"]
   vpc_config {
-    subnet_ids = aws_subnet.fullcycle-subnets[*].id
+    subnet_ids         = aws_subnet.fullcycle-subnets[*].id
     security_group_ids = [aws_security_group.fullcycle-sg.id]
   }
   depends_on = [
